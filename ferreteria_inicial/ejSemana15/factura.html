@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script src="./js/factura.js"></script>
+  <script src="/js/factura.js"></script>
+  <script src="/js/jspdf.min.js"></script>
 </head>
 
 <body>
@@ -41,53 +42,86 @@
   <!-- Fin Barra de navegación -->
   <!-- Página de facturación-->
   <div class="container mt-5">
-    <form class="row justify-content-center" id="BtnSend">
-      <div class="col-md-6">
+    <div class="row justify-content-left">
+      <!-- Datos del cliente -->
+      <div class="col-lg-6 col-md-6 col-sm">
+        <h2 class="alert alert-success text-center">Ventas</h2>
+
         <div class="form-group">
-          <label for="cliente">Nombre</label>
-          <input type="text" class="form-control" id="cliente" />
-        </div>
-        <div class="form-group">
-          <label for="rut">RUT (opcional)</label>
-          <input type="text" class="form-control" id="rut" value="CONSUMIDOR FINAL" />
+          <label for="cliente" class="form-control">Nombre del cliente:<input type="text" class="form-control"
+              id="cliente" placeholder="Nombre del Cliente"></label>
+
+          <label for="rut" class="form-control">RUT (opcional):<input type="text" class="form-control" id="rut"
+              placeholder="RUT"></label>
+
         </div>
       </div>
-      <div class="col">
-        <label for="SelectInpt">Producto</label>
-        <select class="form-select" id="SelectInpt">
-        </select>
+      <!-- Formulario de productos-->
+      <div class="col-lg-6 col-md-6 col-sm">
+        <h2 class="alert alert-success text-center">Productos</h2>
 
-        <button type="submit" class="btn btn-primary mt-2">Enviar</button>
-      </div>
-    </form>
-    <div class="row mt-5">
-      <ul class="list-group" id="list-group">
+        <div class="form-group">
+          <label for="producto" class="form-control">Selecciona el producto:
+            <select class="form-control" id="producto">
+
+            </select></label>
+          <label for="cantidad" class="form-control">Cantidad:
+            <input type="number" class="form-control" id="cantidad" min="1" value="1">
+
+          </label>
+        </div>
+        <div class="form-group mt-3">
+          <button id="agregar" class="btn btn-success">Agregar</button>
+          <!--Este botón sencillamente agrega la selección a la tabla-->
+        </div>
 
 
-      </ul>
 
-      <!-- se muestrar el precio total general -->
-      <div class="total-price">
-        <h4>Total a pagar: <span id="total-general">0</span></h4>
       </div>
     </div>
-    </main>
-    <!-- Fin facturación -->
-    <!-- Probando Toast -->
-    <div id="miToast" class="toast bg-success position-fixed bottom-0 end-0 p-3" role="alert" aria-live="assertive"
-      aria-atomic="true">
-      <div class="toast-header">
-        <img src="./img/hello.png" width="30" class="rounded me-2" alt="...">
-        <strong class="me-auto">Página de facturación</strong>
-        <small class="text-muted"></small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        Ventana de facturación.
+    <div class="row justify-content-left">
+      <div class="col-lg-12 col-md-8 col-sm-4">
+        <!-- Detalle de la compra -->
+        <div class="form-group">
+          <h2 class="alert alert-success text-center">Detalle</h2>
+          <table class="table table-success table-striped">
+            <!--Encabezado de la tabla -->
+            <thead>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+              <th>Acción</th>
+            </thead>
+            <!--Cuerpo de la tabla-->
+            <tbody id="lista">
+              <!--Aquí se cargarán los productos-->
+            </tbody>
+          </table>
+          <h3 class="alert alert warning">Total <span id="total" class="alert alert-danger"></span></h3>
+          <button class="btn btn-primary" id="imp">Imprimir</button>
+        </div>
+
       </div>
     </div>
-    <!-- Fin Toast-->
-    <!--sonido-->
+  </div>
+  </div>
+  <!-- Fin Home page -->
+  <!-- Probando Toast -->
+  <div id="miToast" class="toast bg-success position-fixed bottom-0 end-0 p-3" role="alert" aria-live="assertive"
+    aria-atomic="true">
+    <div class="toast-header">
+      <img src="/img/hello.png" width="30" class="rounded me-2" alt="...">
+      <strong class="me-auto">Página de facturación</strong>
+      <small class="text-muted"></small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Ventana de facturación.
+    </div>
+  </div>
+  <!-- Fin Toast-->
+  <!--sonido-->
 </body>
 
 </html>
